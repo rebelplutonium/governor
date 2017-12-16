@@ -1,0 +1,111 @@
+version: "3.4"
+networks:
+  main:
+    external:
+      name: ${EXTERNAL_NETWORK_NAME}
+services:
+  the_browser:
+    image: rebelplutonium/browser:0.0.0
+    privileged: true
+    shm_size: "256m"
+    environment:
+      DISPLAY:
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
+    networks:
+      main:
+    command: ["http://governor:16842", "http://browser:16843", "http://cloud9:16843", "http://github:16843", "http://governor:16843"]
+    labels:
+      expiry: "${EXPIRY}"
+  cloud9:
+    image: rebelplutonium/github:0.0.1
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "cloud9"
+      CLOUD9_PORT: "16843"
+      UPSTREAM_ID_RSA:
+      UPSTREAM_ORGANIZATION: "rebelplutonium"
+      UPSTREAM_REPOSITORY: "cloud9"
+      ORIGIN_ID_RSA:
+      ORIGIN_ORGANIZATION: "nextmoose"
+      ORIGIN_REPOSITORY: "cloud9"
+      REPORT_ID_RSA:
+      REPORT_ORGANIZATION: "rebelplutonium"
+      REPORT_REPOSITORY: "cloud9"
+      HOST_NAME: "github.com"
+      HOST_PORT: "22"
+      USER_NAME:
+      USER_EMAIL:
+      MASTER_BRANCH: "master"
+    labels:
+      expiry: "${EXPIRY}"
+  github:
+    image: rebelplutonium/github:0.0.1
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "github"
+      CLOUD9_PORT: "16843"
+      UPSTREAM_ID_RSA:
+      UPSTREAM_ORGANIZATION: "rebelplutonium"
+      UPSTREAM_REPOSITORY: "github"
+      ORIGIN_ID_RSA:
+      ORIGIN_ORGANIZATION: "nextmoose"
+      ORIGIN_REPOSITORY: "github"
+      REPORT_ID_RSA:
+      REPORT_ORGANIZATION: "rebelplutonium"
+      REPORT_REPOSITORY: "github"
+      HOST_NAME: "github.com"
+      HOST_PORT: "22"
+      USER_NAME:
+      USER_EMAIL:
+      MASTER_BRANCH: "master"
+    labels:
+      expiry: "${EXPIRY}"
+  browser:
+    image: rebelplutonium/github:0.0.1
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "browser"
+      CLOUD9_PORT: "16843"
+      UPSTREAM_ID_RSA:
+      UPSTREAM_ORGANIZATION: "rebelplutonium"
+      UPSTREAM_REPOSITORY: "browser"
+      ORIGIN_ID_RSA:
+      ORIGIN_ORGANIZATION: "nextmoose"
+      ORIGIN_REPOSITORY: "browser"
+      REPORT_ID_RSA:
+      REPORT_ORGANIZATION: "rebelplutonium"
+      REPORT_REPOSITORY: "browser"
+      HOST_NAME: "github.com"
+      HOST_PORT: "22"
+      USER_NAME:
+      USER_EMAIL:
+      MASTER_BRANCH: "master"
+    labels:
+      expiry: "${EXPIRY}"
+  governor:
+    image: rebelplutonium/github:0.0.1
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "governor"
+      CLOUD9_PORT: "16843"
+      UPSTREAM_ID_RSA:
+      UPSTREAM_ORGANIZATION: "rebelplutonium"
+      UPSTREAM_REPOSITORY: "governor"
+      ORIGIN_ID_RSA:
+      ORIGIN_ORGANIZATION: "nextmoose"
+      ORIGIN_REPOSITORY: "governor"
+      REPORT_ID_RSA:
+      REPORT_ORGANIZATION: "rebelplutonium"
+      REPORT_REPOSITORY: "governor"
+      HOST_NAME: "github.com"
+      HOST_PORT: "22"
+      USER_NAME:
+      USER_EMAIL:
+      MASTER_BRANCH: "master"
+    labels:
+      expiry: "${EXPIRY}"
