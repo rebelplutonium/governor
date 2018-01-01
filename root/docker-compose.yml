@@ -18,7 +18,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   cloud9:
-    image: rebelplutonium/github:0.0.1
+    image: rebelplutonium/github:0.0.2
     networks:
       main:
     environment:
@@ -41,7 +41,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   github:
-    image: rebelplutonium/github:0.0.1
+    image: rebelplutonium/github:0.0.2
     networks:
       main:
     environment:
@@ -64,7 +64,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   browser:
-    image: rebelplutonium/github:0.0.1
+    image: rebelplutonium/github:0.0.2
     networks:
       main:
     environment:
@@ -87,7 +87,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   governor:
-    image: rebelplutonium/github:0.0.1
+    image: rebelplutonium/github:0.0.2
     networks:
       main:
     environment:
