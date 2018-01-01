@@ -14,7 +14,7 @@ services:
       - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
     networks:
       main:
-    command: ["http://governor:16842", "http://browser:16843", "http://cloud9:16843", "http://github:16843", "http://governor:16843"]
+    command: ["http://governor:16842", "http://browser:16843", "http://cloud9:16843", "http://github:16843", "http://governor:16843", "http://secret-editor:16843", "http://hacker:16843",, "http://governor-secrets:16844"]
     labels:
       expiry: "${EXPIRY}"
   cloud9:
@@ -155,3 +155,24 @@ services:
       MASTER_BRANCH: "master"
     labels:
       expiry: "${EXPIRY}"
+  governor-secrets:
+    image: rebelplutonium/secret-editor:0.0.0
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "governor-secrets"
+      CLOUD9_PORT: "16844"
+      GPG_SECRET_KEY:
+      GPG2_SECRET_KEY:
+      GPG_OWNER_TRUST:
+      GPG2_OWNER_TRUST:
+      GPG_KEY_ID:
+      USER_NAME:
+      USER_EMAIL:
+      ORIGIN_ID_RSA:
+      ORIGIN_ORGANIZATION: "${GOVERNOR_SECRETS_ORGANIZATION}"
+      ORIGIN_REPOSITORY: "${GOVERNOR_SECRETS_REPOSITORY}"
+      HOST_NAME: "${GOVERNOR_SECRETS_HOST_NAME}"
+      HOST_PORT: "${GOVERNOR_SECRETS_HOST_PORT}"
+    labels:
+
