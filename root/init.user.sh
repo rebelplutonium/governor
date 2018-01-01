@@ -1,6 +1,7 @@
 #!/bin/sh
 
-TEMP=$(mktemp -d) &&
+GOVERNOR_SECRETS_VERSION=0.0.3 &&
+    TEMP=$(mktemp -d) &&
     echo "${GPG_SECRET_KEY}" > ${TEMP}/gpg_secret_key &&
     gpg --batch --import ${TEMP}/gpg_secret_key &&
     echo "${GPG_OWNER_TRUST}" > ${TEMP}/gpg_owner_trust &&
@@ -11,8 +12,14 @@ TEMP=$(mktemp -d) &&
     pass git config user.name "${USER_NAME}" &&
     pass git config user.email "${USER_EMAIL}" &&
     pass git remote add origin https://${SECRETS_HOST_NAME}:${SECRETS_HOST_PORT}/${SECRETS_ORIGIN_ORGANIZATION}/${SECRETS_ORIGIN_REPOSITORY}.git &&
-    pass git fetch origin master &&
-    pass git checkout origin/master &&
+    if [ -z "${USE_VERSIONED_GOVERNOR_SECRETS}" ]
+    then
+        pass git fetch origin master &&
+            pass git checkout origin/master
+    else
+        pass git fetch origin ${GOVERNOR_SECRETS_VERSION} &&
+            pass git checkout origin/${GOVERNOR_SECRETS_VERSION}
+    fi &&
     ln -sf /usr/local/bin ${HOME}/.password-store/.git/hooks/pre-commit &&
     sed -e "s#\${EXTERNAL_NETWORK_NAME}#${EXTERNAL_NETWORK_NAME}#" -e "w/opt/docker/workspace/docker-compose.yml" /opt/docker/extension/docker-compose.yml &&
     pass show alpha &&
