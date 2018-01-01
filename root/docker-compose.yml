@@ -109,3 +109,26 @@ services:
       MASTER_BRANCH: "master"
     labels:
       expiry: "${EXPIRY}"
+  secret-editor:
+    image: rebelplutonium/github:0.0.2
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "secret-editor"
+      CLOUD9_PORT: "16843"
+      UPSTREAM_ID_RSA:
+      UPSTREAM_ORGANIZATION: "rebelplutonium"
+      UPSTREAM_REPOSITORY: "secret-editor"
+      ORIGIN_ID_RSA:
+      ORIGIN_ORGANIZATION: "nextmoose"
+      ORIGIN_REPOSITORY: "secret-editor"
+      REPORT_ID_RSA:
+      REPORT_ORGANIZATION: "rebelplutonium"
+      REPORT_REPOSITORY: "secret-editor"
+      HOST_NAME: "github.com"
+      HOST_PORT: "22"
+      USER_NAME:
+      USER_EMAIL:
+      MASTER_BRANCH: "master"
+    labels:
+      expiry: "${EXPIRY}"
