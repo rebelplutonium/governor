@@ -8,6 +8,10 @@ GOVERNOR_VERSION=0.0.4 &&
                 GOVERNOR_VERSION="${2}" &&
                     shift 2
             ;;
+            --use-versioned-governor-secrets)
+                USE_VERSIONED_GOVERNOR_SECRETS=yes &&
+                    shift
+            ;;
             *)
                 echo Unknown Option &&
                     echo ${0} &&
@@ -41,6 +45,7 @@ GOVERNOR_VERSION=0.0.4 &&
         --env GOVERNOR_SECRETS_HOST_PORT=443 \
         --env GOVERNOR_SECRETS_ORIGIN_ORGANIZATION=nextmoose \
         --env GOVERNOR_SECRETS_ORIGIN_REPOSITORY=secrets \
+        --env USE_VERSIONED_GOVERNOR_SECRETS=${USE_VERSIONED_GOVERNOR_SECRETS} \
         --env GPG_KEY_ID=D65D3F8C \
         --env GPG_SECRET_KEY="$(cat private/gpg_secret_key)" \
         --env GPG2_SECRET_KEY="$(cat private/gpg2_secret_key)" \
