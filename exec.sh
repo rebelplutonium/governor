@@ -1,6 +1,7 @@
 #!/bin/bash
 
 GOVERNOR_VERSION=0.0.4 &&
+    xhost +local: &&
     while [ ${#} -gt 0 ]
     do
         case ${1} in
