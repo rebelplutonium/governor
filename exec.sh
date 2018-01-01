@@ -34,4 +34,4 @@ export EXTERNAL_NETWORK_NAME=$(uuidgen) &&
         --label expiry=${EXPIRY} \
         --env DISPLAY \
         --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock,readonly=true \
-        rebelplutonium/governor:0.0.0
+        rebelplutonium/governor:0.0.1
