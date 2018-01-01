@@ -175,4 +175,5 @@ services:
       HOST_NAME: "${GOVERNOR_SECRETS_HOST_NAME}"
       HOST_PORT: "${GOVERNOR_SECRETS_HOST_PORT}"
     labels:
+      expiry: "${EXPIRY}"
 
