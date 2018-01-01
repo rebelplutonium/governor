@@ -27,6 +27,14 @@ GOVERNOR_SECRETS_VERSION=0.0.3 &&
     export UPSTREAM_ID_RSA="$(pass show ssh-keys.old/github/upstream/private)" &&
     export ORIGIN_ID_RSA="$(pass show ssh-keys.old/github/origin/private)" &&
     export REPORT_ID_RSA="$(pass show ssh-keys.old/github/report/private)" &&
+    export AWS_ACCESS_KEY_ID="$(pass show aws/aws-access-key-id)" &&
+    export AWS_SECRET_ACCESS_KEY="$(pass show aws/aws-secret-access-key)" &&
+    export AWS_DEFAULT_REGION="$(pass show aws/aws-default-region)" &&
+    export GPG_SECRET_KEY="${GPG_SECRET_KEY}" &&
+    export GPG2_SECRET_KEY="${GPG2_SECRET_KEY}" &&
+    export GPG_OWNER_TRUST="${GPG_OWNER_TRUST}" &&
+    export GPG2_OWNER_TRUST="${GPG2_OWNER_TRUST}" &&
+    export GPG_KEY_ID="${GPG_KEY_ID}" &&
     cd /opt/docker/workspace &&
     docker-compose up -d
 
