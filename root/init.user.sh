@@ -17,7 +17,7 @@ GOVERNOR_SECRETS_VERSION=0.0.3 &&
         pass git fetch origin master &&
             pass git checkout origin/master
     else
-        pass git fetch origin ${GOVERNOR_SECRETS_VERSION} &&
+        pass git fetch --tags origin ${GOVERNOR_SECRETS_VERSION} &&
             pass git checkout origin/${GOVERNOR_SECRETS_VERSION}
     fi &&
     ln -sf /usr/local/bin ${HOME}/.password-store/.git/hooks/pre-commit &&
