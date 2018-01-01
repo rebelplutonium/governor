@@ -11,7 +11,7 @@ GOVERNOR_SECRETS_VERSION=0.0.3 &&
     pass git init &&
     pass git config user.name "${USER_NAME}" &&
     pass git config user.email "${USER_EMAIL}" &&
-    pass git remote add origin https://${SECRETS_HOST_NAME}:${SECRETS_HOST_PORT}/${SECRETS_ORIGIN_ORGANIZATION}/${SECRETS_ORIGIN_REPOSITORY}.git &&
+    pass git remote add origin https://${GOVERNOR_SECRETS_HOST_NAME}:${GOVERNOR_SECRETS_HOST_PORT}/${GOVERNOR_SECRETS_ORIGIN_ORGANIZATION}/${GOVERNOR_SECRETS_ORIGIN_REPOSITORY}.git &&
     if [ -z "${USE_VERSIONED_GOVERNOR_SECRETS}" ]
     then
         pass git fetch origin master &&
