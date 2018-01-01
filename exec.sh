@@ -1,21 +1,22 @@
 #!/bin/bash
 
-while [ ${#} -gt 0 ]
-do
-    case ${1} in
-        --governor-version)
-            GOVERNOR_VERSION="${2}" &&
-                shift 2
-        ;;
-        *)
-            echo Unknown Option &&
-                echo ${0} &&
-                echo ${@} &&
-                exit 64
-        ;;
-    esac
-done &&
-export EXTERNAL_NETWORK_NAME=$(uuidgen) &&
+GOVERNOR_VERSION=0.0.4 &&
+    while [ ${#} -gt 0 ]
+    do
+        case ${1} in
+            --governor-version)
+                GOVERNOR_VERSION="${2}" &&
+                    shift 2
+            ;;
+            *)
+                echo Unknown Option &&
+                    echo ${0} &&
+                    echo ${@} &&
+                    exit 64
+            ;;
+        esac
+    done &&
+    export EXTERNAL_NETWORK_NAME=$(uuidgen) &&
     export EXPIRY=$(($(date +%s)+60*60*24*7)) &&
     sudo docker network create --label expiry=${EXPIRY} ${EXTERNAL_NETWORK_NAME} &&
     cleanup(){
