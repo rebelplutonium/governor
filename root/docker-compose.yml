@@ -14,7 +14,16 @@ services:
       - "/tmp/.X11-unix:/tmp/.X11-unix:ro"
     networks:
       main:
-    command: ["http://governor:16842", "http://browser:16843", "http://cloud9:16843", "http://github:16843", "http://governor:16843", "http://secret-editor:16843", "http://hacker:16843", "http://governor-secrets:16844"]
+    command:
+      - "http://governor:16842",
+      - "http://browser:16843",
+      - "http://cloud9:16843",
+      - "http://github:16843",
+      - "http://governor:16843",
+      - "http://secret-editor:16843",
+      - "http://hacker:16843",
+      - "http://governor-secrets:16844"
+      - "http://my-hacker:16844"
     labels:
       expiry: "${EXPIRY}"
   cloud9:
@@ -174,6 +183,35 @@ services:
       ORIGIN_REPOSITORY: "${GOVERNOR_SECRETS_ORIGIN_REPOSITORY}"
       HOST_NAME: "${GOVERNOR_SECRETS_HOST_NAME}"
       HOST_PORT: "${GOVERNOR_SECRETS_SSH_HOST_PORT}"
+    labels:
+      expiry: "${EXPIRY}"
+  my-hacker:
+    image: rebelplutonium/hacker:0.0.5
+    networks:
+      main:
+    environment:
+      PROJECT_NAME: "my-hacker"
+      CLOUD9_PORT: "16844"
+      DISPLAY:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      AWS_DEFAULT_REGION:
+      GPG_SECRET_KEY:
+      GPG2_SECRET_KEY:
+      GPG_OWNER_TRUST:
+      GPG2_OWNER_TRUST:
+      GPG_KEY_ID:
+      UPSTREAM_ID_RSA:
+      ORIGIN_ID_RSA:
+      REPORT_ID_RSA:
+      EXPIRY:
+    privileged: true
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "/tmp/.X11-unix/X0:/tmp/.X11-unix/X0:ro"
+      - "/:/srv/host:ro"
+      - "/media:/srv/media"
+      - "/home:/srv/home"
     labels:
       expiry: "${EXPIRY}"
 
