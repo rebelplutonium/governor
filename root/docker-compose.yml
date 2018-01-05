@@ -186,7 +186,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   my-hacker:
-    image: rebelplutonium/hacker:0.0.5
+    image: rebelplutonium/hacker:0.0.6
     networks:
       main:
     environment:
@@ -205,6 +205,9 @@ services:
       ORIGIN_ID_RSA:
       REPORT_ID_RSA:
       EXPIRY:
+      EXTERNAL_NETWORK_NAME:
+      USER_NAME:
+      USER_EMAIL:
     privileged: true
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
