@@ -27,7 +27,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   cloud9:
-    image: rebelplutonium/github:0.0.3
+    image: rebelplutonium/github:0.0.4
     networks:
       main:
     environment:
@@ -50,7 +50,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   github:
-    image: rebelplutonium/github:0.0.3
+    image: rebelplutonium/github:0.0.4
     networks:
       main:
     environment:
@@ -73,7 +73,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   browser:
-    image: rebelplutonium/github:0.0.3
+    image: rebelplutonium/github:0.0.4
     networks:
       main:
     environment:
@@ -96,7 +96,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   governor:
-    image: rebelplutonium/github:0.0.3
+    image: rebelplutonium/github:0.0.4
     networks:
       main:
     environment:
@@ -119,7 +119,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   secret-editor:
-    image: rebelplutonium/github:0.0.3
+    image: rebelplutonium/github:0.0.4
     networks:
       main:
     environment:
@@ -142,7 +142,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   hacker:
-    image: rebelplutonium/github:0.0.3
+    image: rebelplutonium/github:0.0.4
     networks:
       main:
     environment:
