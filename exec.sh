@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GOVERNOR_VERSION=0.1.0 &&
+GOVERNOR_VERSION=0.2.0 &&
     xhost +local: &&
     while [ ${#} -gt 0 ]
     do
