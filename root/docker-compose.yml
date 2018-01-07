@@ -187,7 +187,7 @@ services:
     labels:
       expiry: "${EXPIRY}"
   my-hacker:
-    image: rebelplutonium/hacker:0.0.9
+    image: rebelplutonium/hacker:0.0.12
     networks:
       main:
     environment:
