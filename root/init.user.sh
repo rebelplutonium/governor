@@ -1,6 +1,6 @@
 #!/bin/sh
 
-GOVERNOR_SECRETS_VERSION=0.0.3 &&
+GOVERNOR_SECRETS_VERSION=0.0.4 &&
     TEMP=$(mktemp -d) &&
     echo "${GPG_SECRET_KEY}" > ${TEMP}/gpg_secret_key &&
     gpg --batch --import ${TEMP}/gpg_secret_key &&
@@ -22,14 +22,18 @@ GOVERNOR_SECRETS_VERSION=0.0.3 &&
     fi &&
     ln -sf /usr/local/bin ${HOME}/.password-store/.git/hooks/pre-commit &&
     sed -e "s#\${EXTERNAL_NETWORK_NAME}#${EXTERNAL_NETWORK_NAME}#" -e "w/opt/docker/workspace/docker-compose.yml" /opt/docker/extension/docker-compose.yml &&
-    pass show alpha &&
+    if [ "cqT1SgUR" != "$(pass show alpha)" ]
+    then
+        echo failed pass sanity check &&
+            exit 64
+    fi &&
     export EXPIRY="${EXPIRY}" &&
-    export UPSTREAM_ID_RSA="$(pass show ssh-keys.old/github/upstream/private)" &&
-    export ORIGIN_ID_RSA="$(pass show ssh-keys.old/github/origin/private)" &&
-    export REPORT_ID_RSA="$(pass show ssh-keys.old/github/report/private)" &&
-    export AWS_ACCESS_KEY_ID="$(pass show aws/aws-access-key-id)" &&
-    export AWS_SECRET_ACCESS_KEY="$(pass show aws/aws-secret-access-key)" &&
-    export AWS_DEFAULT_REGION="$(pass show aws/aws-default-region)" &&
+    export UPSTREAM_ID_RSA="$(pass show upstream_id_rsa)" &&
+    export ORIGIN_ID_RSA="$(pass show origin_id_rsa)" &&
+    export REPORT_ID_RSA="$(pass show report_id_rsa)" &&
+    export AWS_ACCESS_KEY_ID="$(pass show aws-access-key-id)" &&
+    export AWS_SECRET_ACCESS_KEY="$(pass show aws-secret-access-key)" &&
+    export AWS_DEFAULT_REGION="$(pass show aws-default-region)" &&
     export GPG_SECRET_KEY="${GPG_SECRET_KEY}" &&
     export GPG2_SECRET_KEY="${GPG2_SECRET_KEY}" &&
     export GPG_OWNER_TRUST="${GPG_OWNER_TRUST}" &&
